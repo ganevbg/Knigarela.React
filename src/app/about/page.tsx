@@ -1,11 +1,23 @@
-﻿import { Heart, Sparkles, Users } from "lucide-react"
+﻿import { Heart, Sparkles, Users, BookOpen } from "lucide-react"
 
 export default function AboutPage() {
     return (
         <div className="min-h-screen bg-white">
+            {/* Hero Section */}
+            <section className="relative bg-linear-to-r from-pink-50 to-purple-50 py-20">
+                <div className="mx-auto max-w-6xl px-4 text-center">
+                    <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
+                        Добре дошли в <span style={{ color: "var(--knigarela-pink)" }}>Книгарела</span>
+                    </h1>
+                    <p className="text-lg text-gray-600 md:text-xl">
+                        Открийте магията на книгите с нашите грижливо подбрани кутии.
+                    </p>
+                    <BookOpen className="mx-auto mt-6 h-16 w-16 text-(--knigarela-pink)" aria-hidden="true" />
+                </div>
+            </section>
 
             {/* Mission Section */}
-            <section className="mx-auto max-w-6xl px-4 py-16">
+            <section className="mx-auto max-w-6xl px-4 py-16 animate-fade-in">
                 <div className="grid gap-12 md:grid-cols-2 md:items-center">
                     <div>
                         <h2 className="mb-4 text-3xl font-bold" style={{ color: "var(--knigarela-pink)" }}>
@@ -21,8 +33,8 @@ export default function AboutPage() {
                         </p>
                     </div>
                     <div className="grid gap-6">
-                        <div className="flex gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                            <Heart className="h-8 w-8 flex-shrink-0" style={{ color: "var(--knigarela-pink)" }} />
+                        <div className="flex gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                            <Heart className="h-8 w-8 shrink-0" style={{ color: "var(--knigarela-pink)" }} aria-hidden="true" />
                             <div>
                                 <h3 className="mb-2 font-semibold text-gray-900">Направено с любов</h3>
                                 <p className="text-sm text-gray-600">
@@ -30,8 +42,8 @@ export default function AboutPage() {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                            <Sparkles className="h-8 w-8 flex-shrink-0" style={{ color: "var(--knigarela-pink)" }} />
+                        <div className="flex gap-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                            <Sparkles className="h-8 w-8 shrink-0" style={{ color: "var(--knigarela-pink)" }} aria-hidden="true" />
                             <div>
                                 <h3 className="mb-2 font-semibold text-gray-900">Уникални селекции</h3>
                                 <p className="text-sm text-gray-600">
@@ -50,7 +62,7 @@ export default function AboutPage() {
                         Как работи?
                     </h2>
                     <div className="grid gap-8 md:grid-cols-3">
-                        <div className="text-center">
+                        <div className="text-center animate-slide-up">
                             <div className="mb-4 flex justify-center">
                                 <div
                                     className="flex h-16 w-16 items-center justify-center rounded-full"
@@ -64,7 +76,7 @@ export default function AboutPage() {
                                 Разгледай нашата текуща колекция и избери кутията, която те вълнува най-много
                             </p>
                         </div>
-                        <div className="text-center">
+                        <div className="text-center animate-slide-up" style={{ animationDelay: "0.2s" }}>
                             <div className="mb-4 flex justify-center">
                                 <div
                                     className="flex h-16 w-16 items-center justify-center rounded-full"
@@ -76,7 +88,7 @@ export default function AboutPage() {
                             <h3 className="mb-3 text-xl font-semibold text-gray-900">Поръчай</h3>
                             <p className="text-gray-600">Избери дали искаш еднократна поръчка или месечен абонамент с отстъпка</p>
                         </div>
-                        <div className="text-center">
+                        <div className="text-center animate-slide-up" style={{ animationDelay: "0.4s" }}>
                             <div className="mb-4 flex justify-center">
                                 <div
                                     className="flex h-16 w-16 items-center justify-center rounded-full"
@@ -94,7 +106,7 @@ export default function AboutPage() {
 
             {/* Community Section */}
             <section className="mx-auto max-w-4xl px-4 py-16 text-center">
-                <Users className="mx-auto mb-6 h-16 w-16" style={{ color: "var(--knigarela-pink)" }} />
+                <Users className="mx-auto mb-6 h-16 w-16" style={{ color: "var(--knigarela-pink)" }} aria-hidden="true" />
                 <h2 className="mb-4 text-3xl font-bold" style={{ color: "var(--knigarela-pink)" }}>
                     Присъедини се към нашата общност
                 </h2>
@@ -102,13 +114,14 @@ export default function AboutPage() {
                     Книгарела е повече от просто услуга - това е общност от хора, които споделят любовта към книгите. Следи ни в
                     социалните мрежи за препоръки, дискусии и специални оферти.
                 </p>
-                <div className="flex justify-center gap-4">
+                <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                     <a
                         href="https://facebook.com/559944393863294"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-lg border px-6 py-3 font-medium transition-colors hover:bg-gray-50"
+                        className="rounded-lg border px-6 py-3 font-medium transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500"
                         style={{ borderColor: "var(--knigarela-pink)", color: "var(--knigarela-pink)" }}
+                        aria-label="Посети ни във Facebook"
                     >
                         Facebook
                     </a>
@@ -116,8 +129,9 @@ export default function AboutPage() {
                         href="https://instagram.com/kni.ga.rela"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-lg px-6 py-3 font-medium text-white transition-colors hover:opacity-90"
+                        className="rounded-lg px-6 py-3 font-medium text-white transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-pink-500"
                         style={{ backgroundColor: "var(--knigarela-pink)" }}
+                        aria-label="Посети ни в Instagram"
                     >
                         Instagram
                     </a>
