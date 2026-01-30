@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { getCart, addToCart, removeFromCart, clearCart } from "@/api/cart";
+import { BoxImage } from "@/types";
 
 export type CartItem = {
     boxId: string;
@@ -9,7 +10,7 @@ export type CartItem = {
     quantity: number;
     title: string;
     unitPrice: number;
-    imageUrl: string;
+    image: BoxImage;
 };
 
 type CartContextType = {

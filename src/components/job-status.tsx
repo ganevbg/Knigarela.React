@@ -9,12 +9,14 @@ import { X } from "lucide-react"
 
 interface JobStatusProps {
     jobId: string
-    statusUrl: string
+    statusUrl: string,
+    successText: string,
+    failText: string,
     onDone?: () => void
     onClose?: () => void
 }
 
-export function JobStatus({ jobId, statusUrl, onDone, onClose }: JobStatusProps) {
+export function JobStatus({ jobId, statusUrl, successText, failText, onDone, onClose }: JobStatusProps) {
     const [status, setStatus] = useState<string>("Enqueued")
     const [canClose, setCanClose] = useState(false)
 
@@ -59,11 +61,11 @@ export function JobStatus({ jobId, statusUrl, onDone, onClose }: JobStatusProps)
             <div className="flex items-center justify-between">
                 <div className="flex-1">
                     {["Enqueued", "Processing", "Scheduled", "AwaitingRetry"].includes(status) && (
-                        <StatusSpinner text="Създаване на товарителници..." />
+                        <StatusSpinner text={status === "Enqueued" ? "Създаване..." : "Обработване..."} />
                     )}
-                    {status === "Succeeded" && <StatusSuccess text="Товарителниците са създадени успешно!" />}
+                    {status === "Succeeded" && <StatusSuccess text={successText} />}
                     {["Failed", "Deleted"].includes(status) && (
-                        <StatusError text="Възникна грешка при създаването на товарителниците." />
+                        <StatusError text={failText} />
                     )}
                 </div>
 

@@ -76,6 +76,11 @@ export async function createRequestsForNewOrders() : Promise<string> {
     return data.jobId;
 }
 
+export async function createOrdersForSubscribers() : Promise<string> {
+    const { data } = await api.post(`/api/order/generate-subscription-orders`);
+    return data.jobId;
+}
+
 export async function printLabels(item: Order, paperSize: string) {
     const response = await api.post(`api/order/admin/print-labels/${item.id}?size=${paperSize}`, null);
 

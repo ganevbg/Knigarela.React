@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { resolveImageUrl, formatPrice } from "@/lib/utils";
-
+import { BoxImage } from "@/types/api";
 interface CartItemCardProps {
     boxId: string;
     title: string;
     unitPrice: number;
     quantity: number;
-    imageUrl: string;
+    image: BoxImage;
     purchaseType: string;
     onRemove: (boxId: string, purchaseType: string) => void;
     onUpdateQuantity: (boxId: string, purchaseType: string, quantity: number) => void;
@@ -19,7 +19,7 @@ export function CartItemCard({
     title,
     unitPrice,
     quantity,
-    imageUrl,
+    image,
     purchaseType,
     onRemove,
     onUpdateQuantity,
@@ -29,7 +29,7 @@ export function CartItemCard({
             {/* Image */}
             <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-md">
                 <Image
-                    src={resolveImageUrl(imageUrl) || "/placeholder.svg"}
+                    src={resolveImageUrl(image.url) || "/placeholder.svg"}
                     alt={title}
                     fill
                     className="object-cover transition-transform duration-300 hover:scale-110"

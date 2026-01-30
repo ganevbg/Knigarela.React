@@ -39,7 +39,7 @@ export default function CartPage() {
                                         title={item.title}
                                         unitPrice={item.unitPrice}
                                         quantity={item.quantity}
-                                        imageUrl={item.imageUrl}
+                                        image={item.image}
                                         purchaseType={item.purchaseType}
                                         onRemove={remove}
                                         onUpdateQuantity={add}

@@ -3,12 +3,13 @@
 import { DataTable, type DataTableConfig } from "@/components/admin/data-table"
 import { Badge } from "@/components/ui/badge"
 import { Order } from "@/types/api"
-import { getOrders, deleteOrder, createRequestsForNewOrders, printLabels, printAllLabels } from "@/api/orders"
+import { getOrders, deleteOrder, createRequestsForNewOrders, printLabels, printAllLabels, createOrdersForSubscribers } from "@/api/orders"
 import { formatPrice } from "@/lib/utils"
 import { PaginationParams } from "@/types/common/PaginationParams"
 import { useState } from "react"
 import { JobStatus } from "@/components/job-status";
-import { Bus, Printer } from 'lucide-react'
+import { Box, Bus, Printer } from 'lucide-react'
+import { se } from "date-fns/locale"
 
 const fetchOrders = async (params: PaginationParams<keyof Order>) => {
 
@@ -39,11 +40,23 @@ export default function AdminOrdersPage() {
 
     const [reloadKey, setReloadKey] = useState(0);
     const [jobId, setJobId] = useState<string | null>(null);
+    const [successText, setSuccessText] = useState<string | null>(null);
+    const [failText, setFailText] = useState<string | null>(null);
 
     async function createRequests() {
 
         const jobId = await createRequestsForNewOrders();
         setJobId(jobId);
+        setSuccessText("Товарителниците са създадени успешно!");
+        setFailText("Възникна грешка при създаването на товарителниците.");
+    }
+
+    async function CreateOrderFromActiveBoxForSubscribers() {
+
+        const jobId = await createOrdersForSubscribers();
+        setJobId(jobId);
+        setSuccessText("Поръчките са създадени успешно!");
+        setFailText("Възникна грешка при създаването на поръчките.");
     }
 
     const config: DataTableConfig<Order> = {
@@ -130,6 +143,11 @@ export default function AdminOrdersPage() {
                 label: "Направи товарителници"
             },
             {
+                icon: Box,
+                onClick: () => CreateOrderFromActiveBoxForSubscribers(),
+                label: "Създай поръчки от активни кутии"
+            },
+            {
                 label: "A4",
                 icon: Printer,
                 onClick: async () => await printAllLabels("A4"),
@@ -165,6 +183,8 @@ export default function AdminOrdersPage() {
                     <JobStatus
                         jobId={jobId}
                         statusUrl="/api/order/job-status"
+                        successText={successText }
+                        failText={failText }
                         onDone={() => setReloadKey(v => v + 1)}
                         onClose={() => setJobId(null)}
                     />
