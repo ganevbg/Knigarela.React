@@ -40,9 +40,6 @@ export function ActiveBox() {
     );
   }
 
-  // pick main or first image
-  // optional: extract month/year if you store CreatedAt
-  const label ="Текуща кутия";
   return (
     <div
       className="animate-fade-in overflow-hidden bg-white shadow-lg"
@@ -62,7 +59,7 @@ export function ActiveBox() {
               className="absolute top-4 right-4 rounded-full px-4 py-2 text-sm font-medium text-white shadow-md"
               style={{ backgroundColor: "#D176A3" }}
             >
-              {label}
+              Текуща кутия
             </div>
           </div>
         </div>

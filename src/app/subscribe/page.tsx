@@ -49,7 +49,7 @@ export default function CheckoutPage() {
         <>
             <div className="mx-auto max-w-4xl py-2">
                 <div className="mb-12">
-                            <form onSubmit={handleSubmit} className="space-y-8">
+                            <form onSubmit={handleSubmit} className="py-20">
                                 <div className="rounded-lg bg-white p-6 shadow-md">
                             <h2 className="mb-6 text-2xl font-semibold" style={{ color: "var(--knigarela-pink)" }}>
                                         Контактна информация
@@ -139,7 +139,7 @@ export default function CheckoutPage() {
                                         />
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-4 sm:flex-row">
+                                <div className="flex flex-col gap-4 sm:flex-row px-2">
                                     <Button
                                         type="submit"
                                         size="lg"

@@ -4,7 +4,7 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen bg-white">
             {/* Hero Section */}
-            <section className="relative bg-linear-to-r from-pink-50 to-purple-50 py-20">
+            <section className="relative py-20">
                 <div className="mx-auto max-w-6xl px-4 text-center">
                     <h1 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
                         Добре дошли в <span style={{ color: "var(--knigarela-pink)" }}>Книгарела</span>

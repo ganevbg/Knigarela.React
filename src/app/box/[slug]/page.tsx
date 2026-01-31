@@ -138,11 +138,6 @@ export default function BoxDetailPage() {
                                     alt={box.title}
                                     className="h-full w-full object-cover"
                                 />
-                                <div
-                                    className="absolute top-4 right-4 rounded-full px-4 py-2 text-sm font-medium text-white shadow-md"
-                                    style={{ backgroundColor: "#D176A3" }}
-                                >
-                                </div>
                             </div>
 
                             {/* Additional Images */}
@@ -337,7 +332,7 @@ export default function BoxDetailPage() {
 
                     {/* Main image */}
                     <img
-                        src={resolveImageUrl(box.images?.[selectedImage].url) || imageUrl || "/placeholder.svg"}
+                        src={resolveImageUrl(box.images?.[selectedImage].url) || "/placeholder.svg"}
                         alt={box.title}
                         className="max-h-[90vh] max-w-[90vw] object-contain"
                         onClick={(e) => e.stopPropagation()}
