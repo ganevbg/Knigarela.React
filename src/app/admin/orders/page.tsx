@@ -8,8 +8,7 @@ import { formatPrice } from "@/lib/utils"
 import { PaginationParams } from "@/types/common/PaginationParams"
 import { useState } from "react"
 import { JobStatus } from "@/components/job-status";
-import { Box, Bus, Printer } from 'lucide-react'
-import { se } from "date-fns/locale"
+import { ClipboardCheck, Boxes, Bus, Printer } from 'lucide-react'
 
 const fetchOrders = async (params: PaginationParams<keyof Order>) => {
 
@@ -40,8 +39,8 @@ export default function AdminOrdersPage() {
 
     const [reloadKey, setReloadKey] = useState(0);
     const [jobId, setJobId] = useState<string | null>(null);
-    const [successText, setSuccessText] = useState<string | null>(null);
-    const [failText, setFailText] = useState<string | null>(null);
+    const [successText, setSuccessText] = useState<string>("Успешно завършено!");
+    const [failText, setFailText] = useState<string>("Нещо се обърка.");
 
     async function createRequests() {
 
@@ -138,26 +137,24 @@ export default function AdminOrdersPage() {
         },
         massCustomActions: [
             {
-                icon: Bus,
-                onClick: () => createRequests(),
-                label: "Направи товарителници"
+                icon: Boxes,
+                onClick: () => CreateOrderFromActiveBoxForSubscribers(),
+                label: "Нови поръчки"
             },
             {
-                icon: Box,
-                onClick: () => CreateOrderFromActiveBoxForSubscribers(),
-                label: "Създай поръчки от активни кутии"
+                icon: ClipboardCheck,
+                onClick: () => createRequests(),
+                label: "Товарителници"
             },
             {
                 label: "A4",
                 icon: Printer,
-                onClick: async () => await printAllLabels("A4"),
-                className: "bg-[var(--knigarela-pink)] text-white hover:bg-[var(--knigarela-pink)]/90"
+                onClick: async () => await printAllLabels("A4")
             },
             {
                 label: "A6",
                 icon: Printer,
-                onClick: async () => await printAllLabels("A6"),
-                className: "bg-[var(--knigarela-pink)] text-white hover:bg-[var(--knigarela-pink)]/90"
+                onClick: async () => await printAllLabels("A6")
             }
         ],
         customActions: [

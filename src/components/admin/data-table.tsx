@@ -88,6 +88,7 @@ export function DataTable<T extends { id: string }>({ config, reloadKey }: { con
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc")
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [itemToDelete, setItemToDelete] = useState<T | null>(null)
   const itemsPerPage = config.itemsPerPage || 10
@@ -108,6 +109,7 @@ export function DataTable<T extends { id: string }>({ config, reloadKey }: { con
           itemsPerPage,
         })
         setItems(result.data)
+        setTotalCount(result.total)
         setTotalPages(Math.ceil(result.total / itemsPerPage))
       } catch (error) {
         console.error("Error fetching data:", error)
@@ -286,7 +288,7 @@ export function DataTable<T extends { id: string }>({ config, reloadKey }: { con
                 <Link href={config.createUrl} className="flex-1 sm:flex-initial">
                   <Button className="w-full bg-[var(--knigarela-pink)] text-white hover:bg-[var(--knigarela-pink)]/90">
                     <Plus className="mr-2 h-5 w-5" />
-                    Създай Нов
+                    Създай
                   </Button>
                 </Link>
               )}
@@ -423,7 +425,7 @@ export function DataTable<T extends { id: string }>({ config, reloadKey }: { con
               {/* Pagination */}
               <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4">
                 <p className="text-sm text-[var(--knigarela-text-light)]">
-                  Страница {currentPage} от {totalPages}
+                  Страница {currentPage} от {totalPages}, oбщо {totalCount} резултата
                 </p>
                 <div className="flex items-center gap-2">
                   <Button
