@@ -15,6 +15,7 @@ import { AdminOrder, OrderItem, ClientAllDto, Box } from "@/types/api"
 import AddressPicker from "@/components/address/AddressPicker"
 import { PaginationParams } from "@/types/common/PaginationParams"
 import { formatPrice } from "../../../../lib/utils"
+import { tr } from "date-fns/locale"
 
 const searchClients = async (query: string) => {
     var params: PaginationParams<keyof ClientAllDto> = {
@@ -363,7 +364,7 @@ export default function AdminOrderFormPage() {
                                             >
                                                 <div className="font-medium text-[var(--knigarela-text)]">{box.title}</div>
                                                 <div className="text-sm text-[var(--knigarela-text-light)]">
-                                                    Единична: {box.singlePrice} лв. • Абонамент: {box.subscriptionPrice} лв./месец
+                                                    Единична: {formatPrice(box.singlePrice, true)} • Абонамент: {formatPrice(box.subscriptionPrice, true)} /месец
                                                 </div>
                                             </button>
                                         ))}
@@ -385,7 +386,7 @@ export default function AdminOrderFormPage() {
                                                     onChange={(e) => setPurchaseType(e.target.value as "single" | "subscription")}
                                                     className="w-4 h-4 text-[var(--knigarela-pink)] focus:ring-[var(--knigarela-pink)]"
                                                 />
-                                                <span className="text-[var(--knigarela-text)]">Единична ({selectedBox.singlePrice} лв.)</span>
+                                                <span className="text-[var(--knigarela-text)]">Единична ({formatPrice(selectedBox.singlePrice, true)})</span>
                                             </label>
                                             <label className="flex cursor-pointer items-center gap-2">
                                                 <input
@@ -396,7 +397,7 @@ export default function AdminOrderFormPage() {
                                                     className="w-4 h-4 text-[var(--knigarela-pink)] focus:ring-[var(--knigarela-pink)]"
                                                 />
                                                 <span className="text-[var(--knigarela-text)]">
-                                                    Абонамент ({selectedBox.subscriptionPrice} лв./месец)
+                                                    Абонамент ({formatPrice(selectedBox.subscriptionPrice, true)}/месец)
                                                 </span>
                                             </label>
                                         </div>

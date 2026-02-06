@@ -90,7 +90,7 @@ export default async function OrderSuccessPage({ params }: { params: { id: strin
                                     <div>
                                         <h3 className="font-semibold text-[var(--knigarela-text)]">Доставка</h3>
                                         <p className="text-sm text-[var(--knigarela-text-light)]">
-                                            Вашата поръчка ще пристигне в рамките на 3-5 работни дни
+                                            Вашата поръчка ще пристигне в рамките на 2-5 работни дни
                                         </p>
                                     </div>
                                 </div>
