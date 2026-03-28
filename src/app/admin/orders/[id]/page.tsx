@@ -15,7 +15,6 @@ import { AdminOrder, OrderItem, ClientAllDto, Box } from "@/types/api"
 import AddressPicker from "@/components/address/AddressPicker"
 import { PaginationParams } from "@/types/common/PaginationParams"
 import { formatPrice } from "../../../../lib/utils"
-import { tr } from "date-fns/locale"
 
 const searchClients = async (query: string) => {
     var params: PaginationParams<keyof ClientAllDto> = {

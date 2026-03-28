@@ -78,7 +78,7 @@ export function ActiveBox() {
                 className="w-full rounded-full px-8 py-6 text-base font-medium text-white shadow-md transition-all duration-300 hover:shadow-lg sm:w-auto"
                 style={{ backgroundColor: "#D176A3" }}
               >
-                Виж повече
+                Абонирай се
               </Button>
           </div>
         </div>

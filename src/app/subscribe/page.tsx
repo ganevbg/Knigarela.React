@@ -117,7 +117,7 @@ export default function CheckoutPage() {
                             <h2 className="mb-6 text-2xl font-semibold" style={{ color: "var(--knigarela-pink)" }}>
                                         Адрес за доставка
                                     </h2>
-                                    <div className="space-y-4">
+                                    <div className="space-y-4 mb-4">
                                         <AddressPicker
                                             value={{
                                                 siteId: formData.address.siteId || null,
@@ -138,7 +138,6 @@ export default function CheckoutPage() {
                                             }
                                         />
                                     </div>
-                                </div>
                                 <div className="flex flex-col gap-4 sm:flex-row px-2">
                                     <Button
                                         type="submit"
@@ -148,6 +147,7 @@ export default function CheckoutPage() {
                                     >
                                         Абонирай се
                                     </Button>
+                                </div>
                                 </div>
                             </form>
                 </div>

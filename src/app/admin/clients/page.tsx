@@ -55,6 +55,7 @@ export default function AdminClientsPage() {
             {
                 key: "defaultAddressText",
                 label: "Адрес по подразбиране",
+                sortable: false,
                 render: (value) => <span className="font-medium">{value ?? ""}</span>,
             },
             {

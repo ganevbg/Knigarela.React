@@ -75,10 +75,12 @@ export default function AdminOrdersPage() {
             {
                 key: "clientName",
                 label: "Клиент",
+                sortable: false,
             },
             {
                 key: "address",
-                label: "адрес",
+                label: "Адрес",
+                sortable: false,
             },
             {
                 key: "status",
@@ -90,9 +92,11 @@ export default function AdminOrdersPage() {
             {
                 key: "totalAmount",
                 label: "Общо",
+                sortable: false,
                 render: (value) => formatPrice(value, true),
             },
             {
+                sortable: false,
                 key: "date",
                 label: "Дата",
                 render: (value) => <span className="font-semibold text-[var(--knigarela-pink)]">{value ? new Date(value).toLocaleDateString("bg-BG") : ""}</span>,

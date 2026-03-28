@@ -64,7 +64,6 @@ export default function ClientAddressesPage() {
             {
                 key: "isDefault",
                 label: "По подразбиране",
-                sortable: false,
                 render: (value) =>
                     value ? (
                         <span className="inline-flex items-center rounded-full bg-[var(--knigarela-pink-light)] px-2.5 py-0.5 text-xs font-medium text-[var(--knigarela-pink)]">
