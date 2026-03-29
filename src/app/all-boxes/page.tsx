@@ -81,7 +81,7 @@ export default function AllBoxesPage() {
                         Не пропускайте следващата кутия!
                     </h2>
                     <p className="mb-8 text-lg leading-relaxed" style={{ color: "#6b6b6b" }}>
-                        Абонирайте се сега и получавайте ексклузивни книжни колекции всеки месец на вашата врата.
+                        Абонирайте се сега и получете приказно време за себе си.
                     </p>
                     <Link
                         href="/subscribe"

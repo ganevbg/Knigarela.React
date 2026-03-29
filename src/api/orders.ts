@@ -80,6 +80,12 @@ export async function createRequestsForNewOrders(pickupDate: string | null) : Pr
     return data.jobId;
 }
 
+export async function updateShipmentStatuses() : Promise<string> {
+
+    const { data } = await api.post(`/api/order/update-statuses`);
+    return data.jobId;
+}
+
 export async function createOrdersForSubscribers() : Promise<string> {
     const { data } = await api.post(`/api/order/generate-subscription-orders`);
     return data.jobId;

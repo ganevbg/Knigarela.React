@@ -3,12 +3,12 @@
 import { DataTable, type DataTableConfig } from "@/components/admin/data-table"
 import { Badge } from "@/components/ui/badge"
 import { Order } from "@/types/api"
-import { getOrders, deleteOrder, createRequestsForNewOrders, printLabels, printAllLabels, createOrdersForSubscribers } from "@/api/orders"
+import { getOrders, deleteOrder, createRequestsForNewOrders, printLabels, printAllLabels, createOrdersForSubscribers, updateShipmentStatuses } from "@/api/orders"
 import { formatPrice } from "@/lib/utils"
 import { PaginationParams } from "@/types/common/PaginationParams"
 import { useState } from "react"
 import { JobStatus } from "@/components/job-status";
-import { ClipboardCheck, Boxes, Bus, Printer } from 'lucide-react'
+import { ClipboardCheck, Boxes, Bus, Printer, RefreshCcw } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -62,9 +62,15 @@ export default function AdminOrdersPage() {
     }
 
 
-
   const handleRequestDialogOpen = () => {
     setRequestsDialogOpen(true)
+  }
+
+ const handleUpdateStatuses = async () => {
+    const jobId = await updateShipmentStatuses();
+        setJobId(jobId);
+        setSuccessText("Статусите са обновени успешно!");
+        setFailText("Възникна грешка при обновяването на статусите.");
   }
 
   
@@ -140,6 +146,12 @@ export default function AdminOrdersPage() {
                 type: "text",
                 placeholder: "Търсене по номер...",
             },
+             {
+                key: "speedyIdF",
+                label: "Номер на товарителница",
+                type: "text",
+                placeholder: "Търсене по Номер на товарителница...",
+            },
             {
                 key: "clientName",
                 label: "Клиент",
@@ -177,6 +189,10 @@ export default function AdminOrdersPage() {
                 icon: ClipboardCheck,
                 onClick: () => handleRequestDialogOpen(),
                 label: "Товарителници"
+            },{
+                icon: RefreshCcw,
+                onClick: () => handleUpdateStatuses(),
+                label: "Обнови статуси"
             },
             {
                 label: "A4",

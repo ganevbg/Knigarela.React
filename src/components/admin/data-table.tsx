@@ -91,7 +91,7 @@ export function DataTable<T extends { id: string }>({ config, reloadKey }: { con
   const [totalCount, setTotalCount] = useState(0)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [itemToDelete, setItemToDelete] = useState<T | null>(null)
-  const itemsPerPage = config.itemsPerPage || 10
+  const itemsPerPage = config.itemsPerPage || 20
 
   const enableCreate = config.enableCreate !== false
   const enableEdit = config.enableEdit !== false

@@ -43,7 +43,7 @@ export default function Home() {
                         <div className="text-center">
                             <div className="mb-4 text-5xl">🎁</div>
                             <h3 className="mb-2 text-xl font-semibold" style={{ color: "#D176A3" }}>
-                                Изненади всеки месец
+                                Изненади във всяка кутия
                             </h3>
                             <p className="text-gray-600">Получавайте нови литературни приключения на вашата врата</p>
                         </div>
