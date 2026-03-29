@@ -71,8 +71,12 @@ export async function deleteOrder(id: string) {
     return data;
 }
 
-export async function createRequestsForNewOrders() : Promise<string> {
-    const { data } = await api.post(`/api/order/generate-requests`);
+export async function createRequestsForNewOrders(pickupDate: string | null) : Promise<string> {
+    const req = {
+        pickupDate: pickupDate
+    }
+
+    const { data } = await api.post(`/api/order/generate-requests`, req);
     return data.jobId;
 }
 

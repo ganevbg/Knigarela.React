@@ -9,7 +9,17 @@ import { PaginationParams } from "@/types/common/PaginationParams"
 import { useState } from "react"
 import { JobStatus } from "@/components/job-status";
 import { ClipboardCheck, Boxes, Bus, Printer } from 'lucide-react'
-
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 const fetchOrders = async (params: PaginationParams<keyof Order>) => {
 
     const result = await getOrders(params);
@@ -41,14 +51,32 @@ export default function AdminOrdersPage() {
     const [jobId, setJobId] = useState<string | null>(null);
     const [successText, setSuccessText] = useState<string>("Успешно завършено!");
     const [failText, setFailText] = useState<string>("Нещо се обърка.");
+    const [pickupDate, setPickupDate] = useState<string | null>(null);
+    const [requestsDialogOpen, setRequestsDialogOpen] = useState(false)
 
     async function createRequests() {
-
-        const jobId = await createRequestsForNewOrders();
+        const jobId = await createRequestsForNewOrders(pickupDate);
         setJobId(jobId);
         setSuccessText("Товарителниците са създадени успешно!");
         setFailText("Възникна грешка при създаването на товарителниците.");
     }
+
+
+
+  const handleRequestDialogOpen = () => {
+    setRequestsDialogOpen(true)
+  }
+
+  
+  const confirmCreateRequests = async () => {
+      try {
+        setRequestsDialogOpen(false)
+        createRequests();
+      } catch (error) {
+        console.error("Error deleting item:", error)
+      }
+  }
+
 
     async function CreateOrderFromActiveBoxForSubscribers() {
 
@@ -147,7 +175,7 @@ export default function AdminOrdersPage() {
             },
             {
                 icon: ClipboardCheck,
-                onClick: () => createRequests(),
+                onClick: () => handleRequestDialogOpen(),
                 label: "Товарителници"
             },
             {
@@ -194,5 +222,30 @@ export default function AdminOrdersPage() {
         }
 
         <DataTable config={config} reloadKey={reloadKey} />
+
+        <AlertDialog open={requestsDialogOpen} onOpenChange={setRequestsDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{`Създаване на товарителници за поръчките в статус нов`}</AlertDialogTitle>
+                <div className="space-y-2">
+                            <Label htmlFor="pickupDate" className="text-[var(--knigarela-text)]">
+                                Дата на взимане
+                            </Label>
+                            <Input
+                                id="pickupDate"
+                                type="date"
+                                onChange={(e) => setPickupDate(e.target.value?.slice(0, 10) || "")}
+                                className="border-gray-300 resize-none"
+                            />
+                        </div>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Отказ</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmCreateRequests} className="bg-red-500 text-white hover:bg-red-600">
+                Създаване
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
     </>
 }
