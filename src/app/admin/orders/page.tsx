@@ -137,6 +137,7 @@ export default function AdminOrdersPage() {
             },
         ],
         createUrl: "/admin/orders/create",
+        enableEdit:false,
         editUrl: (id) => `/admin/orders/${id}`,
         fetchData: fetchOrders,
         filters: [
